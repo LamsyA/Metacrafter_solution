@@ -10,6 +10,7 @@ function mintNFT(name, description, image) {
     description: description,
     image: image
   };
+  
   nftCollection.push(nft);
 }
 
