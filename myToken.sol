@@ -3,6 +3,7 @@
 pragma solidity 0.8.7;
 
 contract myToken {
+    
 
     string public tokenName = 'MetaToken';
     string public tokenAbbrev = 'MTK';
