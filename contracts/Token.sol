@@ -11,20 +11,20 @@ contract Token{
     mapping(address => uint) public balance;
 
     function mint(address sender, uint _amount) public {
+        require(_amount > 0 , "amount cannot be less than zero ");
         totalSupply += _amount;
         balance[sender] += _amount;
     }
     function burn(address _sender, uint _amount) public {
-        require(balance[_sender] >= _amount, "Insufficient balance");
-        
+         if( _sender != msg.sender){
+            revert("you are not the owner");
+        }
         totalSupply -= _amount;
         balance[_sender] -= _amount;
     }
 
     function transfer( address _recipient, uint _amount) public{
-        // if( balance[msg.sender] < _amount){
-        //     revert("insufficient balance");
-        // }
+        require(msg.sender != _recipient,"you can not transfer to yourself ");
         assert(balance[msg.sender] >= _amount );
         balance[msg.sender] -= _amount;
         balance[_recipient] += _amount;
